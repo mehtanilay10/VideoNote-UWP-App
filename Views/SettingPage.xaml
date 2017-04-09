@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="VideoNote.Views.SettingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoNote.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <ScrollViewer>
+        <Grid Name="mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="15" ScrollViewer.VerticalScrollMode="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Video Setting -->
+            <!-- R0 Video Setting Title -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Video Settings" Style="{StaticResource settingTitle}" />
+            <!-- R1 Video Location Title -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Video Location:" Style="{StaticResource settingDescription}" />
+            <Button Name="btnChooseVideo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Tapped="btnChooseVideo_Tapped">
+                <TextBlock TextWrapping="NoWrap" Text="Choose File"/>
+            </Button>
+            <!-- R2 Video Location & Choose File btn-->
+            <TextBlock Name="txtVideoUri" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Video Uri" Style="{StaticResource settingDescription}" FontStyle="Italic"/>
+            <!-- R3 Video Pause -->
+            <ToggleSwitch Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="tglPause" Header="Pause Video on tab change:" Style="{StaticResource settingToggle}" Toggled="tglPause_Toggled" />
+            <!-- R4 Video Orientation -->
+            <ToggleSwitch Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="tglOrientation" Header="Video Orientation:" Style="{StaticResource settingToggle}" OffContent="Portrait" OnContent="Landscape" Toggled="tglOrientation_Toggled"/>
+
+            <!-- Note Setting -->
+            <!-- R5 Note Setting Title -->
+            <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Note Settings" Style="{StaticResource settingTitle}" />
+            <!-- R6 Note Autosave -->
+            <ToggleSwitch Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="tglSaveNote" Header="Auto save Notes:" Style="{StaticResource settingToggle}" Toggled="tglSaveNote_Toggled"  />
+
+            <!-- Misc Setting -->
+            <!-- R7 Misc Setting Title -->
+            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="Misc Settings" Style="{StaticResource settingTitle}" />
+            <!-- R8 App Theme -->
+            <ToggleSwitch Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="tglAppTheme" Header="App Theme:" Style="{StaticResource settingToggle}" OnContent="Light" OffContent="Dark" Toggled="tglAppTheme_Toggled" />
+            <!-- R9 Clear Data -->
+            <TextBlock Grid.Row="9" Grid.Column="0" Text="Reset app (i.e. Remove app data)" Style="{StaticResource settingDescription}" />
+            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <TextBlock TextWrapping="NoWrap" Text="Clear Data"/>
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel>
+                            <TextBlock Text="Are you sure want ro remove all app data?" Style="{StaticResource settingDescription}"></TextBlock>
+                            <Button  Name="btnClearData"  Click="btnClearData_Click">
+                                <TextBlock Text="Yep, Clear it" TextWrapping="NoWrap"></TextBlock>
+                            </Button>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+
+            <!-- Progress ring-->
+            <RelativePanel Name="loadingPanel" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="10" Style="{StaticResource loadingPanel}">
+                <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                    <ProgressRing Name="progressRing" Height="64px" Width="64px" IsActive="True"></ProgressRing>
+                    <TextBlock Text="Loading..." Style="{StaticResource settingDescription}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </RelativePanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

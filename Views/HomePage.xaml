@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="VideoNote.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoNote.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity = "using:Microsoft.Xaml.Interactivity"  
+    xmlns:behaviors = "using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"  
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Main Panel containing MediaElement & TextBox -->
+        <Pivot Name="homeMainPanel" Visibility="Collapsed" PivotItemLoaded="homeMainPanel_PivotItemLoaded">
+            <PivotItem Header="Video" Name="homeVideoPanel">
+                <MediaElement Name="mediaViewer" Style="{StaticResource videoPlayer}" AreTransportControlsEnabled="True" Source="file.mp4">
+                    <MediaElement.TransportControls>
+                        <MediaTransportControls Style="{StaticResource videoControl}" IsVolumeButtonVisible="False"></MediaTransportControls>
+                    </MediaElement.TransportControls>
+                </MediaElement>
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Rotate x:Name="RotateBehavior" CenterX="0" CenterY="0"/>
+                </interactivity:Interaction.Behaviors>
+            </PivotItem>
+            <PivotItem Header="Note">
+                <ScrollViewer>
+                    <StackPanel>
+                        <RelativePanel Margin="0, 0, 15, 0">
+                            <StackPanel Name="noteButtonPanel" RelativePanel.AlignRightWithPanel="True" Orientation="Horizontal">
+                                <Button Name="btnSaveFile" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10, 0, 0, 0" Click="btnSaveFile_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Save" Margin="0, 0, 10, 0"></SymbolIcon>
+                                        <TextBlock TextWrapping="Wrap" Text="Save File"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnDownloadFile" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10, 0, 0, 0" Click="btnDownloadFile_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Download" Margin="0, 0, 10, 0"></SymbolIcon>
+                                        <TextBlock TextWrapping="Wrap" Text="Download File"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </RelativePanel>
+                        <RichEditBox Name="noteTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" PlaceholderText="Enter your contenrs here..." MinHeight="300" Margin="0, 15, 15, 20"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+
+        <!-- Update Setting Panel Containing Update Message -->
+        <StackPanel Name="homeUpdateSetting" Visibility="Visible" VerticalAlignment="Center">
+            <Viewbox MaxHeight="80" MaxWidth="80" Margin="0, -50, 0, 50">
+                <SymbolIcon Name="settingIcon" Symbol="Setting" ToolTipService.ToolTip="Update Settings"></SymbolIcon>
+            </Viewbox>
+            <TextBlock RelativePanel.Below="settingIcon" HorizontalAlignment="Center" Style="{StaticResource settingTitle}">Update Settings First!</TextBlock>
+            <TextBlock Style="{StaticResource settingDescription}"  HorizontalAlignment="Center" Margin="10">For first time you need to update existing settings. Open settings page and select location of Video &amp; Note Files first.</TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

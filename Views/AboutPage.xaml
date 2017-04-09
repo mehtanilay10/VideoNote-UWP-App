@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="VideoNote.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoNote.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="0, 0, 10, 0">
+            <Image Source="..\Assets\MN.png" Height="192px" Margin="0, 50, 0, 0"></Image>
+            <TextBlock Text="VideoNote" Style="{StaticResource aboutTitle}"></TextBlock>
+            <TextBlock Text="This app is developed by MNilay" Style="{StaticResource settingTitle}" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Style="{StaticResource settingDescription}" Margin="8" HorizontalAlignment="Center" TextAlignment="Justify">
+                VideoNote is a simple app whose goal is write text notes while watching videos. You simply need to select video file from setting option. After loading video open Notes pivot from Home page, and write contents at a same time while watching video. Note file will automatically save to local storage if you want to use it for feature then click on download button. From setting page you can clear all of the app data including your setting, video file, and note file.
+            </TextBlock>
+            <TextBlock Text="VideoNote is open source project manage by MNilay." Style="{StaticResource settingDescription}" Margin="8" HorizontalAlignment="Center" TextAlignment="Center"></TextBlock>
+            <HyperlinkButton HorizontalAlignment="Stretch">
+                <TextBlock Text="Visit on GitHub" Style="{StaticResource settingDescription}" Margin="8" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+            </HyperlinkButton>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
