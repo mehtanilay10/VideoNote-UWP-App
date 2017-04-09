@@ -18,7 +18,7 @@ namespace VideoNote.Controller
                                    + "<binding template='ToastGeneric'>"
                                    + $"<text id='1'>{title}</text>"
                                    + $"<text id='2'>{message}</text>"
-                                   + "<image placement='appLogoOverride' src='https://unsplash.it/64?image=883' />"
+                                   + "<image placement='appLogoOverride' src='../Assets/Square150x150Logo.scale-200.png' />"
                                    + "</binding>"
                                    + "</visual>"
                                    + "</toast>";
