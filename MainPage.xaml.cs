@@ -20,7 +20,7 @@ namespace VideoNote
         public MainPage()
         {
             this.InitializeComponent();
-            localSettings.Values.Clear();
+            //localSettings.Values.Clear();
 
             // Set Menu
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();

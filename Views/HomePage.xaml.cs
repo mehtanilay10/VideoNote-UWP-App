@@ -78,8 +78,6 @@ namespace VideoNote.Views
                     string data = await LoadNoteDataAsync();
                     noteTextBox.Document.SetText(Windows.UI.Text.TextSetOptions.CheckTextLimit, data);
                 }
-                else
-                    MainController.ShowMessageBox("Error!", "Unable to load video! Pls select video from settings.");
 
                 // Hide save button if auto save enable
                 if (Convert.ToBoolean(localSettings.Values["note_auto_save"]) == true)
@@ -228,15 +226,22 @@ namespace VideoNote.Views
         /// <returns>text of note file</returns>
         private async Task<string> LoadNoteDataAsync()
         {
-            // Retrive text data from textbox
-            string data = string.Empty;
-            noteTextBox.Document.GetText(Windows.UI.Text.TextGetOptions.AdjustCrlf, out data);
+            try
+            {
+                // Retrive text data from textbox
+                string data = string.Empty;
+                noteTextBox.Document.GetText(Windows.UI.Text.TextGetOptions.AdjustCrlf, out data);
 
-            // Load Note from local folder
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await localFolder.GetFileAsync(localSettings.Values["video_uri"].ToString() + "_note.txt");
-            if (file != null)
-                return await FileIO.ReadTextAsync(file);
+                // Load Note from local folder
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile file = await localFolder.CreateFileAsync(localSettings.Values["video_uri"].ToString() + "_note.txt", CreationCollisionOption.OpenIfExists);
+                if (file != null)
+                    return await FileIO.ReadTextAsync(file);
+            }
+            catch (Exception ex)
+            {
+                MainController.ShowMessageBox("Error!", ex.Message);
+            }
             return string.Empty;
         }
 
